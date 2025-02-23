@@ -7,6 +7,7 @@ export class LogInPage extends BasePage{
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
     readonly navbar: HeaderNavBarPage;
+    readonly incorrectLoginWarning;
 
     constructor(page: Page) {
         super(page);
@@ -14,6 +15,7 @@ export class LogInPage extends BasePage{
         this.emailAddressInput = page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address');
         this.passwordInput = page.getByRole('textbox', { name: 'Password' });
         this.loginButton = page.getByRole('button', { name: 'Login' });
+        this.incorrectLoginWarning = page.getByText('Your email or password is');
     }
 
     async login(email: string, password: string): Promise<void> {
@@ -24,7 +26,6 @@ export class LogInPage extends BasePage{
         await this.fillInEmailAddressInput(email);
         await this.fillInPasswordInput(password);
         await this.clickLoginButton();
-        await expect(this.navbar.logoutButton).toBeVisible();
     }
 
     async fillInEmailAddressInput(email : string): Promise<void> {
