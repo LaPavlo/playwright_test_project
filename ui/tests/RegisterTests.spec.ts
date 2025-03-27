@@ -1,8 +1,7 @@
 import {test} from "../utils/fixtures";
 import {userToRegister} from "../models/User";
-//import {userToRegister} from "../utils/config";
 
-test("Register new user", async ({ page, loginPage }) => {
-    await loginPage.openSignUpPage(userToRegister)
+test("1. Register new user", async ({ page, signUpPage }) => {
+    await signUpPage.registerNewUser(userToRegister)
     await page.waitForTimeout(3000);
 })

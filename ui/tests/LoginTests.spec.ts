@@ -5,7 +5,6 @@ import {invalidCredUser, userToLogin} from "../models/User";
 test('2. Login User with correct email and password', async ({ loginPage, header }) => {
     await loginPage.login(userToLogin);
     await expect(header.logoutButton).toBeVisible();
-
 })
 
 test('3. Login User with incorrect password', async ({ loginPage }) => {
