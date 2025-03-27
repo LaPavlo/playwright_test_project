@@ -2,7 +2,7 @@ import {expect, Locator, Page} from "@playwright/test";
 import {HeaderNavBarPage} from "./HeaderNavBarPage";
 import {BasePage} from "./BasePage";
 import {User} from "../models/User";
-import {RegisterUser} from "../models/RegisterUser";
+import {UserBuilder} from "../models/UserBuilder";
 
 export class LogInPage extends BasePage{
     readonly emailAddressInput: Locator;
@@ -38,7 +38,7 @@ export class LogInPage extends BasePage{
         await this.clickLoginButton();
     }
 
-    async register(user: RegisterUser): Promise<void> {
+    async register(user: UserBuilder): Promise<void> {
         await this.navigateTo('/');
         await this.navbar.clickLoginButton();
         await expect(this.newEmailInput).toBeVisible();
