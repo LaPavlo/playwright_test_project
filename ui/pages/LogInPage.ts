@@ -11,8 +11,8 @@ export class LogInPage extends BasePage{
     readonly navbar: HeaderNavBarPage;
     readonly logOutButton: Locator;
     readonly incorrectLoginWarning: Locator;
-    readonly newNameInput: Locator;
-    readonly newEmailInput: Locator;
+    readonly signUpNameField: Locator;
+    readonly signUpEmailField: Locator;
     readonly signUpButton: Locator;
 
     constructor(page: Page) {
@@ -23,9 +23,9 @@ export class LogInPage extends BasePage{
         this.loginButton = page.getByRole('button', { name: 'Login' });
         this.logOutButton = page.getByRole('link', { name: ' Logout' })
         this.incorrectLoginWarning = page.getByText('Your email or password is');
-        this.newNameInput = page.getByRole('textbox', { name: 'Name' });
-        this.newEmailInput = page.locator('form').filter({ hasText: 'Signup' }).getByPlaceholder('Email Address');
-        this.signUpButton = page.getByRole('button', { name: 'Signup' });
+        this.signUpNameField = page.locator('[data-qa="signup-name"]');
+        this.signUpEmailField = page.locator('[data-qa="signup-email"]');
+        this.signUpButton = page.locator('[data-qa="signup-button"]');
     }
 
     async login(user: User): Promise<void> {
@@ -38,13 +38,13 @@ export class LogInPage extends BasePage{
         await this.clickLoginButton();
     }
 
-    async register(user: UserBuilder): Promise<void> {
+    async openSignUpPage(user: User): Promise<void> {
         await this.navigateTo('/');
         await this.navbar.clickLoginButton();
-        await expect(this.newEmailInput).toBeVisible();
+        await expect(this.signUpEmailField).toBeVisible();
 
-        await this.newNameInput.fill(user.name);
-        await this.newEmailInput.fill(user.email);
+        await this.signUpNameField.fill(user.name);
+        await this.signUpEmailField.fill(user.email);
         await this.signUpButton.click();
     }
 
