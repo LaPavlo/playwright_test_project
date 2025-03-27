@@ -2,7 +2,6 @@ import {expect, Locator, Page} from "@playwright/test";
 import {HeaderNavBarPage} from "./HeaderNavBarPage";
 import {BasePage} from "./BasePage";
 import {User} from "../models/User";
-import {UserBuilder} from "../models/UserBuilder";
 
 export class LogInPage extends BasePage{
     readonly emailAddressInput: Locator;
