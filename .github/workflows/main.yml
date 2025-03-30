@@ -36,23 +36,11 @@ jobs:
           name: playwright-report
           path: playwright-report/
   deploy:
-    needs: test  # Ensures deployment runs only after tests pass
+    needs: test
+    permissions:
+      pages: write
+      id-token: write
     runs-on: ubuntu-latest
     steps:
-      - name: Download Playwright report artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: playwright-report  # The name of the artifact to download
-          path: ./playwright-report  # Path where the artifact will be stored on the runner
-
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./playwright-report  # Path to the downloaded report
-          name: playwright-report
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy Playwright report to GitHub Pages
         uses: actions/deploy-pages@v2
