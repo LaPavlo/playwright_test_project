@@ -46,10 +46,11 @@ jobs:
           name: playwright-report
           path: playwright-report
 
-      - name: Upload report to GitHub Pages
+      - name: Upload Playwright Report
         uses: actions/upload-pages-artifact@v3
         with:
           path: playwright-report
+          name: "reports/${{ github.run_id }}"
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
