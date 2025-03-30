@@ -11,7 +11,8 @@ on:
 
 permissions:
   contents: read  # Needed for actions
-  pages: write 
+  pages: write
+  id-token: write
  
 
 jobs:
