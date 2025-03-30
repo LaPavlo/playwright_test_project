@@ -39,12 +39,12 @@ jobs:
       - name: Check if Report Exists
         run: ls -la playwright-report/
 
-  deploy:
-    needs: test
-    permissions:
-      pages: write
-      id-token: write
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy Playwright report to GitHub Pages
-        uses: actions/deploy-pages@v2
+  # deploy:
+  #   needs: test
+  #   permissions:
+  #     pages: write
+  #     id-token: write
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Deploy Playwright report to GitHub Pages
+  #       uses: actions/deploy-pages@v2
