@@ -17,6 +17,7 @@ export class SignupPage extends BasePage{
     readonly zipCodeField: Locator;
     readonly mobileNumberField: Locator;
     readonly createAccountButton: Locator;
+    readonly continueButton: Locator;
     readonly loginPage: LogInPage;
 
     constructor(page: Page) {
@@ -33,6 +34,7 @@ export class SignupPage extends BasePage{
         this.zipCodeField = page.locator('#zipcode');
         this.mobileNumberField = page.locator('#mobile_number');
         this.createAccountButton = page.locator('[data-qa="create-account"]');
+        this.continueButton = page.locator('[data-qa="continue-button"]');
         this.loginPage = new LogInPage(page);
     }
 
@@ -44,6 +46,7 @@ export class SignupPage extends BasePage{
 
         await this.fillInMandatoryUserRegistrationFields(user);
         await this.createAccountButton.click();
+        await this.continueButton.click();
     }
 
     async fillInMandatoryUserRegistrationFields(user: User): Promise<void> {
