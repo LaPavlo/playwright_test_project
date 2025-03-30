@@ -23,7 +23,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests (Headless)
-        run: npx playwright test --headed=false --reporter=html
+        run: npx playwright test --reporter=html
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
