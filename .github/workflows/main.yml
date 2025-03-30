@@ -1,14 +1,16 @@
-name: Playwright Tests
+name: Playwright Tests & Deploy Report
 
 on:
   push:
     branches:
       - main
   workflow_dispatch:
-  
+
 permissions:
-  id-token: write  
-  pages: write 
+  id-token: write
+  pages: write
+  actions: read
+  contents: read
 
 jobs:
   test:
@@ -22,40 +24,96 @@ jobs:
         run: npm install
 
       - name: Run Playwright tests
-        run: npx playwright test --reporter=html
+        run: npx playwright test --headless --reporter=html
 
       - name: Upload Playwright Report
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: playwright-report
-          # -----------------------------------------------------------------------
+
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    name: Deploy Playwright Report to GitHub Pages
+    needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Download Playwright Report
         uses: actions/download-artifact@v4
         with:
-           name: playwright-report
-           path: playwright-report
-        
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-      
-      - name: Deploy to GitHub Pages
-        id: deployment
-       # uses: actions/deploy-pages@v4
-        uses: JamesIves/github-pages-deploy-action@v4
+          name: playwright-report
+          path: playwright-report
+
+      - name: Upload to GitHub Pages
+        uses: actions/upload-pages-artifact@v2
         with:
-          branch: gh-pages
-          folder: playwright-report
-          clean: true          
+          path: playwright-report
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
+
+
+
+# name: Playwright Tests
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
+  
+# permissions:
+#   id-token: write  
+#   pages: write 
+
+# jobs:
+#   test:
+#     name: Run Playwright Tests
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Install dependencies
+#         run: npm install
+
+#       - name: Run Playwright tests
+#         run: npx playwright test --reporter=html
+
+#       - name: Upload Playwright Report
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: playwright-report
+#           path: playwright-report
+#           # -----------------------------------------------------------------------
+#   deploy:
+#     environment:
+#       name: github-pages
+#       url: ${{ steps.deployment.outputs.page_url }}
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout
+#         uses: actions/checkout@v4
+
+#       - name: Download Playwright Report
+#         uses: actions/download-artifact@v4
+#         with:
+#            name: playwright-report
+#            path: playwright-report
+        
+#       - name: Setup Pages
+#         uses: actions/configure-pages@v5
+      
+#       - name: Deploy to GitHub Pages
+#         id: deployment
+#        # uses: actions/deploy-pages@v4
+#         uses: JamesIves/github-pages-deploy-action@v4
+#         with:
+#           branch: gh-pages
+#           folder: playwright-report
+#           clean: true          
 
   # deploy:
   #   name: Deploy Playwright Report to GitHub Pages
