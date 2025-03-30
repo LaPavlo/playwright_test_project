@@ -52,6 +52,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./playwright-report  # Path to the downloaded report
+          name: playwright-report
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
