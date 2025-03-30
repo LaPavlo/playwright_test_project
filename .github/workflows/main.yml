@@ -23,4 +23,4 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright tests (Headless)
-        run: npx playwright test --headed=false
+        run: npx playwright test headless
