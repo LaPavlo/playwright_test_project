@@ -68,7 +68,7 @@ export default defineConfig({
       name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'],
         channel: 'chrome',
-        headless: true,
+        headless: process.env.CI ? true : false,
         viewport: { width: 1920, height: 1080 }
       },
     },
