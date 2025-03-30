@@ -39,6 +39,11 @@ jobs:
         with:
           # Upload entire repository
           path: '.'
+      - name: Download Playwright Report
+        uses: actions/download-artifact@v3
+        with:
+         name: playwright-report
+         path: playwright-report/
       - name: Deploy to GitHub Pages
         id: deployment
        # uses: actions/deploy-pages@v4
