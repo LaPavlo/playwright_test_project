@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: playwright-report
-          name: "reports/${{ github.run_id }}"
+          name: reports/${{ github.run_id }}
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
