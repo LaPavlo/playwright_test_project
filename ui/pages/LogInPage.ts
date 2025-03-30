@@ -12,6 +12,7 @@ export class LogInPage extends BasePage{
     readonly incorrectLoginWarning: Locator;
     readonly signUpNameField: Locator;
     readonly signUpEmailField: Locator;
+    readonly existingEmailWarning: Locator;
     readonly signUpButton: Locator;
 
     constructor(page: Page) {
@@ -24,6 +25,7 @@ export class LogInPage extends BasePage{
         this.incorrectLoginWarning = page.getByText('Your email or password is');
         this.signUpNameField = page.locator('[data-qa="signup-name"]');
         this.signUpEmailField = page.locator('[data-qa="signup-email"]');
+        this.existingEmailWarning = page.locator('//p[normalize-space()="Email Address already exist!"]')
         this.signUpButton = page.locator('[data-qa="signup-button"]');
     }
 
@@ -45,6 +47,10 @@ export class LogInPage extends BasePage{
         await this.signUpNameField.fill(user.name);
         await this.signUpEmailField.fill(user.email);
         await this.signUpButton.click();
+    }
+
+    async deleteAccount(){
+        await this.navbar.clickDeleteAccountButton();
     }
 
     async fillInEmailAddressInput(email : string): Promise<void> {

@@ -12,7 +12,7 @@ export class User {
     zipcode?: string;
     mobilePhone?: string;
 
-
+    //Object-Based Constructor
     constructor({
                     email,
                     password,
@@ -79,7 +79,8 @@ export const userToRegister: User = User.createUser({
 
 export const userToLogin: User = User.createUser({
     email: 'demo@ggmail.com',
-    password: 'y@9xbUTy5gCfV'
+    password: 'y@9xbUTy5gCfV',
+    name: faker.person.firstName(),
 })
 
 export const invalidCredUser: User = User.createUser({
