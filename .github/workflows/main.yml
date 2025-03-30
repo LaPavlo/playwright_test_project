@@ -9,6 +9,11 @@ on:
       - main  # Runs on PRs to 'main'
   workflow_dispatch:  # Allows manual triggering
 
+permissions:
+  contents: read  # Needed for actions
+  pages: write 
+ 
+
 jobs:
   test:
     runs-on: ubuntu-latest
