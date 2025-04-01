@@ -2,8 +2,6 @@ import {BasePage} from "./BasePage";
 import {expect, Locator, Page} from "@playwright/test";
 import {ContactUsForm} from "../models/ContuctUsForm";
 import {HeaderNavBarPage} from "./HeaderNavBarPage";
-import {th} from "@faker-js/faker";
-import {t} from "@faker-js/faker/dist/airline-CBNP41sR";
 
 export class ContactUsPage extends BasePage{
     readonly pageTitle: Locator;
@@ -14,6 +12,7 @@ export class ContactUsPage extends BasePage{
     readonly uploadFileButton: Locator;
     readonly submitButton: Locator;
     readonly successfulSubmitMessage: Locator;
+    readonly homeButton: Locator;
     readonly navbar: HeaderNavBarPage;
 
     constructor(page: Page) {
@@ -27,6 +26,7 @@ export class ContactUsPage extends BasePage{
         this.uploadFileButton = page.locator('input[name="upload_file"]');
         this.submitButton = page.locator('[data-qa="submit-button"]');
         this.successfulSubmitMessage = page.locator('.status.alert.alert-success');
+        this.homeButton = page.locator('//span[normalize-space()="Home"]');
     }
 
     async submitContactUsForm(contactUsForm: ContactUsForm): Promise<void> {
@@ -47,5 +47,10 @@ export class ContactUsPage extends BasePage{
 
     async uploadFile(pathToFile: string): Promise<void> {
         await this.uploadFileButton.setInputFiles(pathToFile);
+    }
+
+    async clickHomeAndVerifyNavigation(): Promise<void> {
+        await this.homeButton.click();
+        await expect(this.page.url()).toEqual('https://automationexercise.com/');
     }
 }
