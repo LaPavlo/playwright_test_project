@@ -32,8 +32,9 @@ export class HeaderNavBarPage extends BasePage{
         await this.contactUsButton.click();
     }
 
-    async clickProductsButton() {
+    async openAllProductsPage() {
+       // await this.navigateTo('/');
         await this.productsButton.click();
-       // await expect(this.page).toHaveURL(/products/);
+      //  await expect(this.page).toHaveURL(/products/);
     }
 }
