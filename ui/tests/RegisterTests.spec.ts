@@ -21,7 +21,7 @@ test("2. Register user with existing email", async ({ loginPage }) => {
     await expect(loginPage.existingEmailWarning).toBeVisible()
 })
 
-test("6. Test the Contact Us Form", async ({  contactUsPage }) => {
+test("6. Test the Contact Us Form", async ({ contactUsPage }) => {
     await contactUsPage.submitContactUsForm(contactUsMessage);
 
     await expect(contactUsPage.successfulSubmitMessage)

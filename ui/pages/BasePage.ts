@@ -16,8 +16,8 @@ export class BasePage {
 
     async handleDialog() {
         this.page.on('dialog', async (dialog) => {
-            console.log(dialog.message());  // Log the alert message
-            await dialog.accept();          // Accept the alert to prevent auto-dismissal
+            console.log(dialog.message());
+            await dialog.accept();
         });
     }
 }

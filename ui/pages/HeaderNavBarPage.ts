@@ -15,7 +15,7 @@ export class HeaderNavBarPage extends BasePage{
         this.logoutButton = page.getByRole('link', { name: /Logout/i });
         this.deleteAccountButton = page.locator('a[href="/delete_account"]');
         this.contactUsButton = page.locator('a[href="/contact_us"]');
-        this.loggedInTitle = page.locator('a').filter({ hasText: 'Logged in as' });  // ✅ Works well
+        this.loggedInTitle = page.locator('a').filter({ hasText: 'Logged in as' });
     }
 
     async clickLoginButton() {
