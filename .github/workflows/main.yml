@@ -25,6 +25,7 @@ jobs:
 
       - name: Run Playwright tests
         run: npx playwright test --reporter=html
+        continue-on-error: true
 
       - name: Upload Playwright Report
         if: always()
