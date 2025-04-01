@@ -26,4 +26,6 @@ test("6. Test the Contact Us Form", async ({ contactUsPage }) => {
 
     await expect(contactUsPage.successfulSubmitMessage)
         .toContainText('Success! Your details have been submitted successfully.')
+
+    await contactUsPage.clickHomeAndVerifyNavigation();
 })

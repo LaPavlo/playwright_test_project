@@ -1,8 +1,9 @@
-import {Locator, Page} from "@playwright/test";
+import {expect, Locator, Page} from "@playwright/test";
 import {BasePage} from "./BasePage";
 
 export class HeaderNavBarPage extends BasePage{
     readonly page: Page;
+    readonly productsButton: Locator;
     readonly loginButton: Locator;
     readonly logoutButton: Locator;
     readonly deleteAccountButton: Locator;
@@ -11,6 +12,7 @@ export class HeaderNavBarPage extends BasePage{
 
     constructor(page: Page) {
         super(page);
+        this.productsButton = page.locator('a[href="/products"]')
         this.loginButton = page.getByRole('link', { name: ' Signup / Login' });
         this.logoutButton = page.getByRole('link', { name: /Logout/i });
         this.deleteAccountButton = page.locator('a[href="/delete_account"]');
@@ -28,5 +30,10 @@ export class HeaderNavBarPage extends BasePage{
 
     async clickContactUsButton() {
         await this.contactUsButton.click();
+    }
+
+    async clickProductsButton() {
+        await this.productsButton.click();
+       // await expect(this.page).toHaveURL(/products/);
     }
 }
