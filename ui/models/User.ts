@@ -1,4 +1,4 @@
-import {faker} from "@faker-js/faker/locale/ar";
+import {faker} from "@faker-js/faker/locale/en_US";
 
 export class User {
     email: string;

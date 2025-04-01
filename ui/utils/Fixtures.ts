@@ -3,12 +3,14 @@ import {LogInPage} from "../pages/LogInPage";
 import {HeaderNavBarPage} from "../pages/HeaderNavBarPage";
 import {BasePage} from "../pages/BasePage";
 import {SignupPage} from "../pages/SignupPage";
+import {ContactUsPage} from "../pages/ContactUsPage";
 
 type Fixtures = {
     loginPage: LogInPage;
     basePage: BasePage;
     header: HeaderNavBarPage;
     signUpPage: SignupPage;
+    contactUsPage: ContactUsPage;
 }
 
 export const test = base.extend<Fixtures>({
@@ -23,5 +25,8 @@ export const test = base.extend<Fixtures>({
     },
     signUpPage: async ({ page }, use) => {
         await use(new SignupPage(page));
+    },
+    contactUsPage: async ({ page }, use) => {
+        await use(new ContactUsPage(page))
     }
 });

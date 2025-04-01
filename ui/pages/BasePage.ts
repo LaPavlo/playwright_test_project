@@ -13,4 +13,11 @@ export class BasePage {
         console.log(`Navigate to ${link}`);
         await this.page.goto(link);
     }
+
+    async handleDialog() {
+        this.page.on('dialog', async (dialog) => {
+            console.log(dialog.message());  // Log the alert message
+            await dialog.accept();          // Accept the alert to prevent auto-dismissal
+        });
+    }
 }
