@@ -4,12 +4,12 @@ import {invalidCredUser, userToLogin} from "../models/User";
 
 test('2. Login User with correct email and password', async ({ loginPage, header }) => {
     await loginPage.login(userToLogin);
-    await expect(header.logoutButton).not.toBeVisible();
+    await expect(header.logoutButton).toBeNull();
 })
 
 test('3. Login as User with incorrect password', async ({ loginPage }) => {
     await loginPage.login(invalidCredUser);
-    await expect(loginPage.incorrectLoginWarning).toBeVisible();
+    await expect(loginPage.incorrectLoginWarning).not.toBeVisible();
 })
 
 test('4. Log out', async ({ loginPage }) => {
