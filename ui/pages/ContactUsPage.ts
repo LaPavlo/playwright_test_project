@@ -39,13 +39,10 @@ export class ContactUsPage extends BasePage{
         await this.nameField.type(contactUsForm.name);
         await this.emailField.type(contactUsForm.email);
         await this.messageField.type(contactUsForm.message);
-
         await this.subjectField.type(contactUsForm.subject);
-        await this.page.keyboard.press('Enter');
-        await this.page.waitForTimeout(2000);
 
         await this.handleDialog();
-
+        await this.page.keyboard.press('Enter');
     }
 
     async uploadFile(pathToFile: string): Promise<void> {
