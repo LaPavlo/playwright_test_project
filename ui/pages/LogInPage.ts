@@ -68,5 +68,4 @@ export class LogInPage extends BasePage{
     async clickLogOutButton(): Promise<void> {
         await this.logOutButton.click();
     }
-
 }

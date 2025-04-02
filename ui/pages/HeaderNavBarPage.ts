@@ -2,7 +2,6 @@ import {expect, Locator, Page} from "@playwright/test";
 import {BasePage} from "./BasePage";
 
 export class HeaderNavBarPage extends BasePage{
-    readonly page: Page;
     readonly productsButton: Locator;
     readonly loginButton: Locator;
     readonly logoutButton: Locator;
@@ -33,8 +32,8 @@ export class HeaderNavBarPage extends BasePage{
     }
 
     async openAllProductsPage() {
-       // await this.navigateTo('/');
+        await this.navigateTo('/');
         await this.productsButton.click();
-      //  await expect(this.page).toHaveURL(/products/);
+        await expect(this.page).toHaveURL(/products/);
     }
 }

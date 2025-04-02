@@ -14,3 +14,10 @@ test('9. Search Product', async ({ allProductsPage }) => {
         expect(productName).toContain(searchString);
     })
 })
+
+test('12: Add Products in Cart', async ({ page, header, allProductsPage }) => {
+    await header.openAllProductsPage();
+    await allProductsPage.addProductToCard();
+
+    await allProductsPage.clickContinueShopping()
+})

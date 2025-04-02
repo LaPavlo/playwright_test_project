@@ -8,7 +8,7 @@ export class BasePage {
         this.page = page;
     }
 
-    protected async navigateTo(link: string) {
+    async navigateTo(link: string) {
         if (!link) throw new Error('❌ URL is empty! Provide a valid link.');
         console.log(`Navigate to ${link}`);
         await this.page.goto(link);
