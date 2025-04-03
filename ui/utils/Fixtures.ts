@@ -6,6 +6,7 @@ import {SignupPage} from "../pages/SignupPage";
 import {ContactUsPage} from "../pages/ContactUsPage";
 import {AllProductsPage} from "../pages/AllProductsPage";
 import {ProductDetailsPage} from "../pages/ProductDetailsPage";
+import {ViewCartPage} from "../pages/ViewCartPage";
 
 type Fixtures = {
     loginPage: LogInPage;
@@ -15,6 +16,7 @@ type Fixtures = {
     contactUsPage: ContactUsPage;
     allProductsPage: AllProductsPage;
     productDetailsPage: ProductDetailsPage;
+    viewCartPage: ViewCartPage;
 }
 
 export const test = base.extend<Fixtures>({
@@ -38,5 +40,8 @@ export const test = base.extend<Fixtures>({
     },
     productDetailsPage: async ({ page }, use) => {
         await use(new ProductDetailsPage(page));
+    },
+    viewCartPage: async ({ page }, use) => {
+        await use(new ViewCartPage(page));
     }
 });
