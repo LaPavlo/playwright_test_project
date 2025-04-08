@@ -22,8 +22,8 @@ test('12: Add Products in Cart',
       //  const secondProduct = await allProductsPage.getProductDetailsByIndex(1);
 
      //   console.log(secondProduct);
-        await allProductsPage.addFirstProductToCard();
-       await allProductsPage.continueShoppingButton.waitFor({ state: 'visible' });
+        //   await allProductsPage.addFirstProductToCard();
+       await allProductsPage.clickContinueShoppingButton();
       // await allProductsPage.continueShoppingButton.click();
 
         // await allProductsPage.addSecondProductToCard()
@@ -34,7 +34,17 @@ test('12: Add Products in Cart',
        // console.log(firstProductInCart);
 
         expect(firstProduct).toEqual(firstProductInCart);
-
         //TODO add second product to the cart
-
     })
+
+test('13. Verify Product quantity in Cart', async ({ allProductsPage, productDetailsPage, viewCartPage }) => {
+    const productQuantity = 4;
+
+    await allProductsPage.viewFirstProduct();
+    await productDetailsPage.setProductQuantity(productQuantity);
+    await productDetailsPage.addToCart();
+    await productDetailsPage.clickViewCartButtonInModal();
+
+    expect(await viewCartPage.getQuantity()).toBe(productQuantity);
+
+})
