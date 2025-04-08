@@ -1,6 +1,7 @@
 import {BasePage} from "./BasePage";
 import {expect, Locator, Page} from "@playwright/test";
 import {HeaderNavBarPage} from "./HeaderNavBarPage";
+import {CartModal} from "./CartModal";
 
 export class AllProductsPage extends BasePage{
     readonly searchProductField: Locator;
@@ -10,10 +11,8 @@ export class AllProductsPage extends BasePage{
     readonly productPrices: Locator;
     readonly viewProductButton: Locator;
     readonly addToCartButton: Locator;
-    readonly cartModal: Locator;
-    readonly continueShoppingButton: Locator;
-    readonly viewCartButton: Locator;
     readonly header: HeaderNavBarPage
+    readonly cartModal: CartModal;
 
     constructor(page: Page) {
         super(page);
@@ -24,16 +23,15 @@ export class AllProductsPage extends BasePage{
         this.productTitles = page.locator('div[class="productinfo text-center"] p');
         this.viewProductButton = page.locator('a[href^="/product_details/"]');
         this.addToCartButton = page.locator('[data-product-id]');
-
-        this.cartModal = page.locator('#cartModal');
-        this.continueShoppingButton = this.cartModal.locator('[data-dismiss="modal"]');
-        this.viewCartButton = this.cartModal.locator('a[href="/view_cart"]');
         this.header = new HeaderNavBarPage(page);
+        this.cartModal = new CartModal(page);
     }
 
     async viewFirstProduct() {
         await this.header.openAllProductsPage();
         await this.viewProductButton.first().click();
+
+        await expect(this.page).toHaveURL(/product_details/);
     }
 
     async addFirstProductToCard() {
@@ -41,14 +39,14 @@ export class AllProductsPage extends BasePage{
         await this.productsList.first().hover();
         await this.addToCartButton.first().click();
 
-        await expect(this.continueShoppingButton).toBeVisible();
+        await expect(this.cartModal.modal).toBeVisible();
     }
 
     async addSecondProductToCard() {
         await this.productsList.nth(1).hover({force: true});
         await this.addToCartButton.nth(1).click({force: true});
 
-        await expect(this.continueShoppingButton).toBeVisible();
+        await expect(this.cartModal.modal).toBeVisible();
     }
 
     async searchProducts(name: string) {
@@ -58,13 +56,13 @@ export class AllProductsPage extends BasePage{
         return await this.productTitles.allTextContents();
     }
 
-    async clickContinueShopping() {
-        await this.continueShoppingButton.click();
+    async clickViewCartButtonInModal() {
+        await this.cartModal.clickViewCartButton();
+        await expect(this.page).toHaveURL(/view_cart/);
     }
 
-    async clickViewCartButtonInModal() {
-        await this.viewCartButton.click();
-        await expect(this.page).toHaveURL(/view_cart/);
+    async clickContinueShoppingButton() {
+        await this.cartModal.clickContinueShoppingButton();
     }
 
     async getProductDetailsByIndex(index: number) {
