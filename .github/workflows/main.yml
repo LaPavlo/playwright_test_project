@@ -33,9 +33,6 @@ jobs:
         run: npx playwright test --reporter=html
         continue-on-error: true
 
-      - name: Generate HTML report with timestamped folder
-        run: |
-          mkdir -p playwright-report-${{ steps.timestamp.outputs.timestamp }}
 
       - name: Upload Playwright Report
         if: always()
@@ -55,10 +52,13 @@ jobs:
       - name: Download Playwright Report
         uses: actions/download-artifact@v4
         with:
-          name: playwright-report-${{ steps.timestamp.outputs.timestamp }}
+          name: playwright-report-${{ github.run_number }}
+          path: playwright-report
+
+      - name: Upload Playwright Report
+        uses: actions/upload-pages-artifact@v3
+        with:
           path: playwright-report
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          publish_dir: playwright-report-${{ steps.timestamp.outputs.timestamp }}
+        uses: actions/deploy-pages@v4
