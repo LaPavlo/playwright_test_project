@@ -36,7 +36,6 @@ jobs:
       - name: Generate HTML report with timestamped folder
         run: |
           mkdir -p playwright-report-${{ steps.timestamp.outputs.timestamp }}
-          npx playwright show-report --output=playwright-report-${{ steps.timestamp.outputs.timestamp }}
 
       - name: Upload Playwright Report
         if: always()
