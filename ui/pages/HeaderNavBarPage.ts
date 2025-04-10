@@ -3,6 +3,7 @@ import {BasePage} from "./BasePage";
 
 export class HeaderNavBarPage extends BasePage{
     readonly productsButton: Locator;
+    readonly cartButton: Locator;
     readonly loginButton: Locator;
     readonly logoutButton: Locator;
     readonly deleteAccountButton: Locator;
@@ -12,6 +13,7 @@ export class HeaderNavBarPage extends BasePage{
     constructor(page: Page) {
         super(page);
         this.productsButton = page.locator('a[href="/products"]')
+        this.cartButton = page.locator('.navbar-nav [href="/view_cart"]')
         this.loginButton = page.getByRole('link', { name: ' Signup / Login' });
         this.logoutButton = page.getByRole('link', { name: /Logout/i });
         this.deleteAccountButton = page.locator('a[href="/delete_account"]');
@@ -29,6 +31,11 @@ export class HeaderNavBarPage extends BasePage{
 
     async clickContactUsButton() {
         await this.contactUsButton.click();
+    }
+
+    async openCartPage(){
+        await this.cartButton.click();
+        await expect(this.page).toHaveURL(/view_cart/);
     }
 
     async openAllProductsPage() {
