@@ -1,7 +1,7 @@
-import {BasePage} from "./BasePage";
-import {expect, Locator, Page} from "@playwright/test";
-import {ContactUsForm} from "../models/ContuctUsForm";
-import {HeaderNavBarPage} from "./HeaderNavBarPage";
+import {BasePage} from './BasePage';
+import {expect, Locator, Page} from '@playwright/test';
+import {ContactUsForm} from '../models/ContuctUsForm';
+import {HeaderNavBarPage} from './HeaderNavBarPage';
 
 export class ContactUsPage extends BasePage{
     readonly pageTitle: Locator;

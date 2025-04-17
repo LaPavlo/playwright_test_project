@@ -1,7 +1,7 @@
-import {Locator, Page} from "@playwright/test";
-import {BasePage} from "./BasePage";
-import {CreditCard} from "../models/CreditCard";
-import {User} from "../models/User";
+import {Locator, Page} from '@playwright/test';
+import {BasePage} from './BasePage';
+import {CreditCard} from '../models/CreditCard';
+import {User} from '../models/User';
 
 export class PaymentPage extends BasePage{
     readonly cardName: Locator;
