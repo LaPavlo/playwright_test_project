@@ -1,7 +1,7 @@
-import {expect, Locator, Page} from "@playwright/test";
-import {BasePage} from "./BasePage";
-import {User} from "../models/User";
-import {faker} from "@faker-js/faker/locale/en_US";
+import {expect, Locator, Page} from '@playwright/test';
+import {BasePage} from './BasePage';
+import {User} from '../models/User';
+import {faker} from '@faker-js/faker/locale/en_US';
 
 export class CheckoutPage extends BasePage{
     readonly placeOrderButton: Locator;

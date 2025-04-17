@@ -1,7 +1,7 @@
-import {BasePage} from "./BasePage";
-import {expect, Locator, Page} from "@playwright/test";
-import {HeaderNavBarPage} from "./HeaderNavBarPage";
-import {CartModal} from "./CartModal";
+import {BasePage} from './BasePage';
+import {expect, Locator, Page} from '@playwright/test';
+import {HeaderNavBarPage} from './HeaderNavBarPage';
+import {CartModal} from './CartModal';
 
 export class AllProductsPage extends BasePage{
     readonly searchProductField: Locator;
@@ -11,7 +11,7 @@ export class AllProductsPage extends BasePage{
     readonly productPrices: Locator;
     readonly viewProductButton: Locator;
     readonly addToCartButton: Locator;
-    readonly header: HeaderNavBarPage
+    readonly header: HeaderNavBarPage;
     readonly cartModal: CartModal;
 
     constructor(page: Page) {
@@ -70,6 +70,6 @@ export class AllProductsPage extends BasePage{
             price: await this.productPrices.nth(index).textContent(),
             quantity: 1,
             title: await this.productTitles.nth(index).textContent(),
-        }
+        };
     }
 }

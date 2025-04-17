@@ -1,4 +1,4 @@
-import {faker} from "@faker-js/faker/locale/en_US";
+import {faker} from '@faker-js/faker/locale/en_US';
 
 export class User {
     email: string;
@@ -75,15 +75,15 @@ export const userToRegister: User = User.createUser({
     city: faker.location.city(),
     zipcode: faker.location.zipCode(),
     mobilePhone: faker.phone.number()
-})
+});
 
 export const userToLogin: User = User.createUser({
     email: 'demo@ggmail.com',
     password: 'y@9xbUTy5gCfV',
     name: faker.person.firstName(),
-})
+});
 
 export const invalidCredUser: User = User.createUser({
     email: 'demo@ggmai.com',
     password: 'y@9xbUTy5gCfV'
-})
+});

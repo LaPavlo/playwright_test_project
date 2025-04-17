@@ -1,6 +1,6 @@
-import {BasePage} from "./BasePage";
-import {expect, Locator, Page} from "@playwright/test";
-import {CheckoutModal} from "./CheckoutModal";
+import {BasePage} from './BasePage';
+import {expect, Locator, Page} from '@playwright/test';
+import {CheckoutModal} from './CheckoutModal';
 
 export class ViewCartPage extends BasePage{
     readonly proceedToCheckoutButton: Locator;
@@ -30,7 +30,7 @@ export class ViewCartPage extends BasePage{
             title: await this.title.nth(0).textContent(),
             price: await this.price.nth(0).textContent(),
             quantity: 1
-        }
+        };
     }
 
     async clickProceedToCheckout() {
@@ -41,7 +41,7 @@ export class ViewCartPage extends BasePage{
     }
 
     async clickRegisterOrLoginButtonOnModal() {
-        await this.checkoutModal.clickRegisterOrLoginButton()
+        await this.checkoutModal.clickRegisterOrLoginButton();
     }
 
 }

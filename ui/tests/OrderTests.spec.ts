@@ -1,13 +1,13 @@
-import {test} from "../utils/Fixtures";
-import {userToRegister} from "../models/User";
-import {expect} from "@playwright/test";
-import {card} from "../models/CreditCardBuilder";
+import {test} from '../utils/Fixtures';
+import {userToRegister} from '../models/User';
+import {expect} from '@playwright/test';
+import {card} from '../models/CreditCardBuilder';
 
 test('14. Place Order: Register while Checkout', async ( { page, allProductsPage, viewCartPage, signUpPage, header, checkoutPage, paymentPage }) => {
     await allProductsPage.addFirstProductToCart();
     await allProductsPage.clickViewCartButtonInModal();
     await viewCartPage.clickProceedToCheckout();
-    await viewCartPage.clickRegisterOrLoginButtonOnModal()
+    await viewCartPage.clickRegisterOrLoginButtonOnModal();
     await  expect(page).toHaveURL(/login/);
 
     await signUpPage.registerNewUser(userToRegister);
@@ -25,5 +25,5 @@ test('14. Place Order: Register while Checkout', async ( { page, allProductsPage
     await expect(page).toHaveURL(/payment_done/);
 
     await header.clickDeleteAccountButton();
-    await expect(page).toHaveURL(/delete_account/)
-})
+    await expect(page).toHaveURL(/delete_account/);
+});

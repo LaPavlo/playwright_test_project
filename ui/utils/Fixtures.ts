@@ -1,14 +1,14 @@
-import { test as base } from "@playwright/test";
-import {LogInPage} from "../pages/LogInPage";
-import {HeaderNavBarPage} from "../pages/HeaderNavBarPage";
-import {BasePage} from "../pages/BasePage";
-import {SignupPage} from "../pages/SignupPage";
-import {ContactUsPage} from "../pages/ContactUsPage";
-import {AllProductsPage} from "../pages/AllProductsPage";
-import {ProductDetailsPage} from "../pages/ProductDetailsPage";
-import {ViewCartPage} from "../pages/ViewCartPage";
-import {CheckoutPage} from "../pages/CheckoutPage";
-import {PaymentPage} from "../pages/PaymentPage";
+import { test as base } from '@playwright/test';
+import {LogInPage} from '../pages/LogInPage';
+import {HeaderNavBarPage} from '../pages/HeaderNavBarPage';
+import {BasePage} from '../pages/BasePage';
+import {SignupPage} from '../pages/SignupPage';
+import {ContactUsPage} from '../pages/ContactUsPage';
+import {AllProductsPage} from '../pages/AllProductsPage';
+import {ProductDetailsPage} from '../pages/ProductDetailsPage';
+import {ViewCartPage} from '../pages/ViewCartPage';
+import {CheckoutPage} from '../pages/CheckoutPage';
+import {PaymentPage} from '../pages/PaymentPage';
 
 type Fixtures = {
     loginPage: LogInPage;
@@ -37,7 +37,7 @@ export const test = base.extend<Fixtures>({
         await use(new SignupPage(page));
     },
     contactUsPage: async ({ page }, use) => {
-        await use(new ContactUsPage(page))
+        await use(new ContactUsPage(page));
     },
     allProductsPage: async ({ page }, use) => {
         await use(new AllProductsPage(page));

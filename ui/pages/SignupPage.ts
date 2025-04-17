@@ -1,7 +1,7 @@
-import {expect, Locator, Page} from "@playwright/test";
-import {BasePage} from "./BasePage";
-import {LogInPage} from "./LogInPage";
-import {User} from "../models/User";
+import {expect, Locator, Page} from '@playwright/test';
+import {BasePage} from './BasePage';
+import {LogInPage} from './LogInPage';
+import {User} from '../models/User';
 
 export class SignupPage extends BasePage{
     readonly nameField: Locator;

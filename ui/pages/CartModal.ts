@@ -1,5 +1,5 @@
-import {BasePage} from "./BasePage";
-import {Locator, Page} from "@playwright/test";
+import {BasePage} from './BasePage';
+import {Locator, Page} from '@playwright/test';
 
 export class CartModal extends BasePage{
     readonly modal: Locator;

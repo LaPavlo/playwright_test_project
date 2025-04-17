@@ -1,4 +1,4 @@
-import {fakerEN_US as faker} from "@faker-js/faker";
+import {fakerEN_US as faker} from '@faker-js/faker';
 
 export class ContactUsForm{
     name?: string;
@@ -34,7 +34,7 @@ export class ContactUsForm{
         message?: string;
         pathToFile?: string;
     }): ContactUsForm{
-        return new ContactUsForm(formData)
+        return new ContactUsForm(formData);
     }
 }
 
@@ -44,4 +44,4 @@ export const contactUsMessage: ContactUsForm = ContactUsForm.createContactUsMess
     subject: faker.lorem.word(),
     message: faker.lorem.sentence(),
     pathToFile: 'ui/utils/img.png'
-})
+});

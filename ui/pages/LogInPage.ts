@@ -1,7 +1,7 @@
-import {expect, Locator, Page} from "@playwright/test";
-import {HeaderNavBarPage} from "./HeaderNavBarPage";
-import {BasePage} from "./BasePage";
-import {User} from "../models/User";
+import {expect, Locator, Page} from '@playwright/test';
+import {HeaderNavBarPage} from './HeaderNavBarPage';
+import {BasePage} from './BasePage';
+import {User} from '../models/User';
 
 export class LogInPage extends BasePage{
     readonly emailAddressInput: Locator;
@@ -21,11 +21,11 @@ export class LogInPage extends BasePage{
         this.emailAddressInput = page.locator('form').filter({ hasText: 'Login' }).getByPlaceholder('Email Address');
         this.passwordInput = page.getByRole('textbox', { name: 'Password' });
         this.loginButton = page.getByRole('button', { name: 'Login' });
-        this.logOutButton = page.getByRole('link', { name: ' Logout' })
+        this.logOutButton = page.getByRole('link', { name: ' Logout' });
         this.incorrectLoginWarning = page.getByText('Your email or password is');
         this.signUpNameField = page.locator('[data-qa="signup-name"]');
         this.signUpEmailField = page.locator('[data-qa="signup-email"]');
-        this.existingEmailWarning = page.locator('//p[normalize-space()="Email Address already exist!"]')
+        this.existingEmailWarning = page.locator('//p[normalize-space()="Email Address already exist!"]');
         this.signUpButton = page.locator('[data-qa="signup-button"]');
     }
 

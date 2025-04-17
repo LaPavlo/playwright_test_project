@@ -1,6 +1,6 @@
-import {expect, Locator, Page} from "@playwright/test";
-import {BasePage} from "./BasePage";
-import {CartModal} from "./CartModal";
+import {expect, Locator, Page} from '@playwright/test';
+import {BasePage} from './BasePage';
+import {CartModal} from './CartModal';
 
 export class ProductDetailsPage extends BasePage{
     readonly productName: Locator;
