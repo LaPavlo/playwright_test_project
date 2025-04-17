@@ -34,7 +34,7 @@ export class AllProductsPage extends BasePage{
         await expect(this.page).toHaveURL(/product_details/);
     }
 
-    async addFirstProductToCard() {
+    async addFirstProductToCart() {
         await this.header.openAllProductsPage();
         await this.productsList.first().hover();
         await this.addToCartButton.first().click();
