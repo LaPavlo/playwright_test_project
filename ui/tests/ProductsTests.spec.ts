@@ -22,7 +22,7 @@ test('12: Add Products in Cart',
       //  const secondProduct = await allProductsPage.getProductDetailsByIndex(1);
 
      //   console.log(secondProduct);
-        await allProductsPage.addFirstProductToCard();
+        await allProductsPage.addFirstProductToCart();
 
         // await allProductsPage.addSecondProductToCard()
          await allProductsPage.clickViewCartButtonInModal();
