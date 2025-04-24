@@ -11,7 +11,7 @@ test('14. Place Order: Register while Checkout', async ( { page, allProductsPage
     await  expect(page).toHaveURL(/login/);
 
     await signUpPage.registerNewUser(userToRegister);
-    await expect(header.loggedInTitle).toContainText(userToRegister.name);
+    await expect(header.loggedInTitle).toContainText(userToRegister.name!);
 
     await header.openCartPage();
     await viewCartPage.clickProceedToCheckout();
@@ -27,3 +27,22 @@ test('14. Place Order: Register while Checkout', async ( { page, allProductsPage
     await header.clickDeleteAccountButton();
     await expect(page).toHaveURL(/delete_account/);
 });
+
+test('15. Place Order: Register before Checkout', async ({ page, allProductsPage, viewCartPage, header, signUpPage, checkoutPage, paymentPage }) => {
+    await signUpPage.registerNewUser(userToRegister);
+    await expect(header.loggedInTitle).toContainText(userToRegister.name!);
+
+    await allProductsPage.addFirstProductToCart();
+    await allProductsPage.clickViewCartButtonInModal();
+    await viewCartPage.clickProceedToCheckout();
+    await  expect(page).toHaveURL(/checkout/);
+
+    await checkoutPage.verifyDeliveryAddress(userToRegister);
+
+    await checkoutPage.fillInCommentFieldAndPlaceOrder();
+    await paymentPage.fillInCardFieldsAndConfirm(card, userToRegister);
+    await expect(page).toHaveURL(/payment_done/);
+
+    await header.clickDeleteAccountButton();
+    await expect(page).toHaveURL(/delete_account/);
+})

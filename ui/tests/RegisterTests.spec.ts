@@ -5,7 +5,7 @@ import {contactUsMessage} from '../models/ContuctUsForm';
 
 test('1. Register new user', async ({ signUpPage, header }) => {
     await signUpPage.registerNewUser(userToRegister);
-    await expect(header.loggedInTitle).toContainText(userToRegister.name);
+    await expect(header.loggedInTitle).toContainText(userToRegister.name!);
 });
 
 test('1.2 Delete registered user', async ({ page, loginPage, signUpPage }) => {
