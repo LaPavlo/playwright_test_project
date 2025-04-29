@@ -64,10 +64,18 @@ jobs:
             mkdir -p ${{ steps.timestamp.outputs.timestamp }}
             mv temp-report/* ${{ steps.timestamp.outputs.timestamp }}/
     
+        - name: Generate index.html
+          run: |
+            echo "<html><head><title>Playwright Reports</title></head><body><h1>Test Reports</h1><ul>" > index.html
+            for dir in [0-9]*/ ; do
+              echo "<li><a href=\"./$dir\">$dir</a></li>" >> index.html
+            done
+            echo "</ul></body></html>" >> index.html
+
         - name: Upload timestamped reports to GitHub Pages
           uses: actions/upload-pages-artifact@v3
           with:
-            path: .
+              path: .
     
         - name: Deploy to GitHub Pages
           uses: actions/deploy-pages@v4
