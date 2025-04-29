@@ -42,23 +42,32 @@ jobs:
           path: playwright-report
 
   deploy:
-    name: Deploy Playwright Report to GitHub Pages
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Download Playwright Report
-        uses: actions/download-artifact@v4
-        with:
-          name: playwright-report-${{ github.run_number }}
-          path: temp-report
-
-      - name: Upload Playwright Report
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: playwright-report
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      name: Deploy Playwright Report to GitHub Pages
+      needs: test
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+    
+        - name: Download Playwright Report
+          uses: actions/download-artifact@v4
+          with:
+            name: playwright-report-${{ github.run_number }}
+            path: temp-report
+    
+        - name: Set timestamp
+          id: timestamp
+          run: echo "timestamp=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
+    
+        - name: Move report into timestamp folder
+          run: |
+            mkdir -p ${{ steps.timestamp.outputs.timestamp }}
+            mv temp-report/* ${{ steps.timestamp.outputs.timestamp }}/
+    
+        - name: Upload timestamped reports to GitHub Pages
+          uses: actions/upload-pages-artifact@v3
+          with:
+            path: .
+    
+        - name: Deploy to GitHub Pages
+          uses: actions/deploy-pages@v4
