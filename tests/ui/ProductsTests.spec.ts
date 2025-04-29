@@ -1,4 +1,4 @@
-import {test} from '../utils/Fixtures';
+import {test} from '../../utils/Fixtures';
 import {expect} from '@playwright/test';
 
 test('8.Verify All Products and product detail page', async ({ allProductsPage, productDetailsPage }) => {

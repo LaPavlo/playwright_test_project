@@ -1,6 +1,6 @@
 import {expect} from '@playwright/test';
-import {test} from '../utils/Fixtures';
-import {invalidCredUser, userToLogin} from '../models/User';
+import {test} from '../../utils/Fixtures';
+import {invalidCredUser, userToLogin} from '../../models/User';
 
 test('2. Login User with correct email and password', async ({ loginPage, header }) => {
     await loginPage.login(userToLogin);
