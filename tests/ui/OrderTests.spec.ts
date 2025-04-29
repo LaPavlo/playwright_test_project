@@ -1,7 +1,7 @@
-import {test} from '../utils/Fixtures';
-import {userToRegister} from '../models/User';
+import {test} from '../../utils/Fixtures';
+import {userToRegister} from '../../models/User';
 import {expect} from '@playwright/test';
-import {card} from '../models/CreditCardBuilder';
+import {card} from '../../models/CreditCardBuilder';
 
 test('14. Place Order: Register while Checkout', async ( { page, allProductsPage, viewCartPage, signUpPage, header, checkoutPage, paymentPage }) => {
     await allProductsPage.addFirstProductToCart();

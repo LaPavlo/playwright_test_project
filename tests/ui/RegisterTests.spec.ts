@@ -1,7 +1,7 @@
-import {test} from '../utils/Fixtures';
-import {userToLogin, userToRegister} from '../models/User';
+import {test} from '../../utils/Fixtures';
+import {userToLogin, userToRegister} from '../../models/User';
 import {expect} from '@playwright/test';
-import {contactUsMessage} from '../models/ContuctUsForm';
+import {contactUsMessage} from '../../models/ContuctUsForm';
 
 test('1. Register new user', async ({ signUpPage, header }) => {
     await signUpPage.registerNewUser(userToRegister);
