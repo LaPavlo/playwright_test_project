@@ -53,12 +53,21 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: playwright-report-${{ github.run_number }}
-          path: playwright-report
+          path: temp-report
 
-      - name: Upload Playwright Report
+      - name: Set timestamp
+        id: timestamp
+        run: echo "timestamp=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
+
+      - name: Organize report by timestamp
+        run: |
+          mkdir -p all-reports/${{ steps.timestamp.outputs.timestamp }}
+          mv temp-report/* all-reports/${{ steps.timestamp.outputs.timestamp }}/
+
+      - name: Upload reports to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: playwright-report
+          path: all-reports
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
