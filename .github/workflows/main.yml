@@ -55,19 +55,10 @@ jobs:
           name: playwright-report-${{ github.run_number }}
           path: temp-report
 
-      - name: Set timestamp
-        id: timestamp
-        run: echo "timestamp=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_OUTPUT
-
-      - name: Organize report by timestamp
-        run: |
-          mkdir -p all-reports/${{ steps.timestamp.outputs.timestamp }}
-          mv temp-report/* all-reports/${{ steps.timestamp.outputs.timestamp }}/
-
-      - name: Upload reports to GitHub Pages
+      - name: Upload Playwright Report
         uses: actions/upload-pages-artifact@v3
         with:
-          path: all-reports
+          path: playwright-report
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
